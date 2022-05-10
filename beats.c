@@ -1,48 +1,36 @@
 #include <stdio.h>
-#define max 4
+#define max 16
 
 int main(){
-    int n, i, j, k, cont = 0;
-    char v[max][max], lixo;
+    int n, i, j, k, cont = 0, erro = 0;
+    char v[max], lixo;
     scanf("%d",&n);
     for(i=0; i<max; i++){
-        for(j=0; j<max; j++){
+        scanf("%c", &lixo);
+        while(lixo == '\n'){
             scanf("%c", &lixo);
-            while(lixo == '\n'){
-                scanf("%c", &lixo);
-            }
-            if(lixo != '\n'){
-                v[i][j] = lixo;
-            }
+        }
+        if(lixo != '\n'){
+            v[i] = lixo;
         }
     }
     for(i=0; i<max; i++){
-        for(j=0; j<max; j++){
-            printf("[%c] ", v[i][j]);
-        }
-        printf("\n");
-    }
-    for(i=0; i<max; i++){ //linha
-        for(j=0; j<max; j++){ //coluna
-            for(k=j+1; k<max; k++){ //coluna + 1
-                if(v[i][j] != '.' && v[i][j] == v[i][k]){
-                    cont = cont + 1;
-                }
+        cont = 0;
+        for(j=i; j<max; j++){
+            if(v[i] != '.' && v[i] == v[j]){
+                cont = cont + 1;
             }
-            if(n < cont){
-                printf("sou menor\n");
-                cont = -1;
+            if(n*2 < cont){
+                erro = -1;
                 break;
-            }else{
-                cont = 0;
             }
         }
     }
 
-    if(cont == -1){
-        printf("NO\n");
-    }else{
+    if(erro == 0){
         printf("YES\n");
+    }else{
+        printf("NO\n");
     }
 
     return 0;
