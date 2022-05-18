@@ -1,38 +1,28 @@
 #include <stdio.h>
 
-typedef struct k{
-    int vivo;
-    int qtd;
-}killer;
-
-void mata(killer *v, int n, int pos){
-    int i;
-    for(i=pos-1; i>n - v[pos].qtd; i--){
-        v[i].vivo = -1;
-    }
-}
-
-int conta_vivos(killer *v, int n){
-    int i, cont=0;
-    for(i=n-1; i>=0; i--){
-        mata(v, n, i);
-    }
-    for(i=0; i<n; i++){
-        if(v[i].vivo != -1){
-            cont++;
-        }
-    }
-    return cont;
-}
-
 int main(){
-    int i, n;
+    int n, i, vivos=0, aux;
     scanf("%d", &n);
-    killer v[n];
+    int v[n], pos_mortos = n;
     for(i=0; i<n; i++){
-        scanf("%d", &v[i].qtd);
-        v[i].vivo = 0;
+        scanf("%d", &v[i]);
     }
-    printf("%d\n", conta_vivos(&v,n));
+    for(i=n-1; i>=0; i--){ 
+        aux = i - v[i];
+        //printf("i:%d, v[i]:%d, aux:%d pos_mortos:%d\n", i, v[i], aux, pos_mortos);
+        if(aux < pos_mortos){
+            if(i < pos_mortos){
+                vivos++;
+                //printf("i<pos_mortos vivos:%d\n",vivos);
+            }
+            pos_mortos = aux;
+            //printf("pos_mortos att:%d\n",pos_mortos);
+        }
+        
+        //printf("-----------------------\n");
+    }
+    
+    printf("%d\n", vivos);
+
     return 0;
 }
