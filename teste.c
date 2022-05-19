@@ -41,24 +41,28 @@ void quick(int vet[], int esq, int dir){
  }
 
 int main(){
-    int n, k, i, cont=0, aux=0, inicio=0;
+    int n, k, i, cont=0, aux=0, inicio=0, lixo;
     scanf("%d %d", &n, &k);
     int v[n], a[n];
     for(i=0; i<n; i++){
-        scanf("%d", &v[i]);
+        scanf("%d", &lixo);
+        if(lixo%k == 0){
+            v[i] = lixo/k;
+        }else{
+            v[i] = lixo;
+        }
     }
     //orderna o vetor
     quick(v, 0, n-1);
-
     for(i=0; i<n; i++){
-        aux = busca_binaria(a,inicio,cont-1,v[i]/k);
-        if(aux != -1){
-            inicio = aux;
+        printf("%d ", v[i]);
+    }
+    printf("\n");
+    for(i=0; i<n; i++){
+        while(v[i] == v[i+1]){
+            i++;
         }
-        if(( (v[i]%k==0) && (aux==-1) ) || (v[i]%k!=0)){
-            a[cont] = v[i];
-            cont++;
-        }
+        cont++;
     }
     printf("%d\n", cont);
 
