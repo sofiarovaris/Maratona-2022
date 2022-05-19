@@ -2,7 +2,6 @@
 #include <string.h>
 
 int comb2(int n) {
-    //return (n * (n - 1)) / 2;
     return 1 << n - 1;
 }
 
