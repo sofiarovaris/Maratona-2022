@@ -51,13 +51,18 @@ int main(){
     quick(v, 0, n-1);
 
     for(i=0; i<n; i++){
-        aux = busca_binaria(a,inicio,cont-1,v[i]/k);
-        if(aux != -1){
-            inicio = aux;
-        }
-        if(( (v[i]%k==0) && (aux==-1) ) || (v[i]%k!=0)){
+        if((v[i]%k!=0)){
             a[cont] = v[i];
             cont++;
+        }else{
+            aux = busca_binaria(a,inicio,cont-1,v[i]/k);
+            if(aux != -1){
+                inicio = aux;
+            }
+            if(aux==-1){
+                a[cont] = v[i];
+                cont++;
+            }
         }
     }
     printf("%d\n", cont);
