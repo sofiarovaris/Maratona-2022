@@ -15,6 +15,7 @@ int main(){
         cin >> x >> y;
         consultas.push_back(make_pair(x, y));
     }
+    sort(consultas.begin(), consultas.end());
 
     for(int i=0; i<n-1; i++){
         if(consultas[index].second <= consultas[i+1].first){
