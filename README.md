@@ -1,3 +1,3 @@
-# Maratona 2022
- 
-Repositório utilizado para deixar os códigos de treinamento para a Maratona de Programação de 2022.
+# Programming Marathon
+
+Repository used to store solution codes for challenges proposed by various training sites, aiming to prepare for the Programming Marathon.
